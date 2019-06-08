@@ -11,35 +11,49 @@ public class Menu_Startowe extends JFrame {
     private JButton WinButton;
     private JTextField WelcomeText;
     private JPanel Panel_startowy;
+    private Wybor_wielkosci wielkosc;
+    private Wybor_wartosci zwyciestwo;
+    private Plansza plansza;
 
     public Menu_Startowe() {
-        StartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { ;
-            }
-        });
         SizeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame m = new JFrame();
-                m.setSize(200,200);
-                m.setLocation(100,100);
-                JTextField j = new JTextField();
-                j.setText("Podaj wielkosc planszy:");
-                m.add(j);
-                m.setVisible(true);
+                JFrame frame = new JFrame();
+                wielkosc = new Wybor_wielkosci();
+                frame.setContentPane(wielkosc.getPanel());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setSize(300,300);
+                frame.setLocation(700  ,300);
+                frame.setVisible(true);
             }
         });
+
         WinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame m = new JFrame();
-                m.setSize(200,200);
-                m.setLocation(100,100);
-                JTextField j = new JTextField();
-                j.setText("Podaj ilosc znakow w rzedzie by zwyciezyc:");
-                m.add(j);
-                m.setVisible(true);
+                JFrame frame = new JFrame();
+                zwyciestwo = new Wybor_wartosci();
+                frame.setContentPane(zwyciestwo.getPanel());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+               // frame.setSize(300,300);
+                frame.pack();
+                frame.setLocation(700,300);
+                frame.setVisible(true);
+            }
+        });
+
+        StartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                plansza = new Plansza();
+                JFrame frame = new JFrame();
+                plansza.removeAll();
+                plansza.setSize(wielkosc.getWielkosc());
+                plansza.revalidate();
+                plansza.repaint();
+                frame.setContentPane(plansza);
+                frame.setVisible(true);
             }
         });
     }
@@ -51,7 +65,8 @@ public class Menu_Startowe extends JFrame {
         JFrame myFrame = new JFrame("Kolko i krzyzyk");
         myFrame.setContentPane(new Menu_Startowe().Panel_startowy);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.pack();
+        myFrame.setSize(300,300);
+        myFrame.setLocation(700,300);
         myFrame.setVisible(true);
     }
 }
