@@ -48,11 +48,11 @@ public class Menu_Startowe extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 plansza = new Plansza();
                 JFrame frame = new JFrame();
+                frame.add(plansza);
                 plansza.removeAll();
                 plansza.setSize(wielkosc.getWielkosc());
                 plansza.revalidate();
                 plansza.repaint();
-                frame.setContentPane(plansza);
                 frame.setVisible(true);
             }
         });
